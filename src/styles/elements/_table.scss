@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+  padding-top: 8px;
+
+  td.td-img-small {
+    width: $app-td-img-small-width;
+    padding: $app-td-img-small-padding;
+  }
+
+  td.player-name {
+    height: 60px;
+  }
+};
+

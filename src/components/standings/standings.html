@@ -1,0 +1,46 @@
+<div class="container">
+
+    <div ng-if="$ctrl.loading">
+        <div class="card"><div class="card-body text-center">Fetching standings ...</div></div>
+    </div>
+
+    <div ng-if="!$ctrl.loading">
+        <div ng-repeat="standing in $ctrl.standings track by $index">
+
+            <h4>{{standing.groupName}}</h4>
+
+            <table class="table table-bordered">
+                <thead class="thead-light">
+
+                <th>Country</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Losses</th>
+                <th>Games Played</th>
+                <th>Goals For</th>
+                <th>Goals Against</th>
+                <th>Goal Differential</th>
+                <th>Points</th>
+
+                </thead>
+
+                <tbody>
+
+                <tr ng-repeat="team in standing.teams | orderBy: 'points':true track by $index">
+                    <td><span><img class="img-small" ng-src="{{team.getFlagUrl()}}" alt="TBD"> {{team.country}}</span></td>
+                    <td>{{team.win}}</td>
+                    <td>{{team.draw}}</td>
+                    <td>{{team.lost}}</td>
+                    <td>{{team.matchPlayed}}</td>
+                    <td>{{team.goalFor}}</td>
+                    <td>{{team.goalAgainst}}</td>
+                    <td>{{team.diffGoal}}</td>
+                    <td>{{team.points}}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

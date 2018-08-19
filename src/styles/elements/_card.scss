@@ -1,0 +1,7 @@
+.card-deck {
+  .card {
+    max-width: $app-card-max-width;
+    min-width: $app-card-min-width;
+    margin-bottom: $app-card-margin-bottom;
+  }
+}

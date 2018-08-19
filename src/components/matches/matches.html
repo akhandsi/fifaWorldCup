@@ -1,0 +1,67 @@
+<div class="container">
+
+    <div ng-if="$ctrl.loading">
+        <div class="card">
+            <div class="card-body text-center"> Fetching match list ...</div>
+        </div>
+    </div>
+
+    <div class="card-deck" ng-if="!$ctrl.loading">
+        <div class="card" ng-repeat="game in $ctrl.matches | orderBy: 'dateTime':false track by $index"
+             ng-class="$ctrl.getGameBackgroundClass(game)">
+
+            <div class="card-body text-center">
+
+                <!-- match stage or group name-->
+                <h5 class="card-text text-left"><span>{{$ctrl.getGameTitle(game)}}</span></h5>
+
+                <!-- match location and venue-->
+                <p class="card-text text-left">
+                    <small class="text-muted">{{game.location}}, {{game.venue}}</small>
+                </p>
+
+                <!-- match details -->
+                <table>
+                    <tbody>
+
+                    <!-- home team information -->
+                    <tr ng-class="$ctrl.getHomeTeamBackgroundClass(game)">
+                        <td class="td-img-small">
+                            <img class="img-small" ng-src="{{game.homeTeam.getFlagUrl()}}" alt="TBD">
+                        </td>
+                        <td>
+                            <span>{{game.homeTeam.country}}</span>
+                        </td>
+                        <td align="right">
+                            <span class="text-right">{{game.homeTeam.goals}}</span>
+                        </td>
+                    </tr>
+
+                    <!-- away team information -->
+                    <tr ng-class="$ctrl.getAwayTeamBackgroundClass(game)">
+                        <td class="td-img-small">
+                            <img class="img-small" ng-src="{{game.awayTeam.getFlagUrl()}}" alt="TBD">
+                        </td>
+                        <td>
+                            <span>{{game.awayTeam.country}}</span>
+                        </td>
+                        <td align="right">
+                            <span class="text-right">{{game.awayTeam.goals}}</span>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <br>
+
+                <!-- match schedule -->
+                <p class="card-text text-left">
+                    <small class="text-muted">{{game.matchScheduleDisplay()}}</small>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>

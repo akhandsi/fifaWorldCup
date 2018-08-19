@@ -1,0 +1,121 @@
+<div class="container">
+
+    <div ng-if="$ctrl.loading">
+        <div class="card"><div class="card-body text-center">Fetching statistics ...</div></div>
+    </div>
+
+    <div ng-if="!$ctrl.loading">
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item" ng-repeat="tab in $ctrl.tabs track by $index">
+                <a ng-click="$ctrl.changeTab(tab)"
+                   class="nav-link"
+                   ng-class="{'active': $ctrl.selectedTab === tab.key}">
+                    {{tab.label}}
+                </a>
+            </li>
+        </ul>
+
+        <!-- Goal Scored Table -->
+       <div ng-if="$ctrl.selectedTab === 'GOALS_SCORED'">
+           <table class="table table-bordered">
+               <thead class="thead-light">
+               <th>Rank</th>
+               <th>Player</th>
+               <th>Goals Scored</th>
+               <th>Assists</th>
+               <th>Minutes Played</th>
+               <th>Matches Played</th>
+               <th>Penalties Scored</th>
+               </thead>
+
+               <tbody>
+               <tr ng-repeat="player in $ctrl.statistics.goalsScoredStats | orderBy:'rank':false track by $index">
+                   <td>{{player.rank}}</td>
+                   <td class="player-name">
+                       <div class="player-name-container">
+                           <div class="player-name-picture">
+                               <svg class="player-name-svg" viewBox="0 0 200 200">
+                                   <image width="100%" height="100%"
+                                          xlink:href=""
+                                          ng-attr-xlink:href="{{player.getPictureUrl()}}"
+                                          class="player-name-image-r player-name-image-responsive">
+                                   </image>
+                               </svg>
+                               <div class="player-name-flag">
+                                   <div class="player-name-flag-wrapper">
+                                       <img ng-src="{{player.getCountryFlagUrl()}}"
+                                            alt="{{player.countryCode}}"
+                                            title="{{player.countryCode}}"
+                                            class="player-flag-img">
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="player-name-text">
+                               {{player.name}}
+                           </div>
+                       </div>
+                   </td>
+                   <td>{{player.goalsScored}}</td>
+                   <td>{{player.assist}}</td>
+                   <td>{{player.minutesPlayed}}</td>
+                   <td>{{player.matchesPlayed}}</td>
+                   <td>{{player.penaltiesScored}}</td>
+               </tr>
+               </tbody>
+
+           </table>
+       </div>
+
+        <!-- Goal Saved Table -->
+        <div ng-if="$ctrl.selectedTab === 'GOALS_SAVED'">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Matches Played</th>
+                <th>Minutes Played</th>
+                <th>Saves</th>
+                <th>Save Rate</th>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="player in $ctrl.statistics.goalsSavedStats | orderBy:'rank':false track by $index">
+                    <td>{{player.rank}}</td>
+                    <td class="player-name">
+                        <div class="player-name-container">
+                            <div class="player-name-picture">
+                                <svg class="player-name-svg" viewBox="0 0 200 200">
+                                    <image width="100%" height="100%"
+                                           xlink:href=""
+                                           ng-attr-xlink:href="{{player.getPictureUrl()}}"
+                                           class="player-name-image-r player-name-image-responsive">
+                                    </image>
+                                </svg>
+                                <div class="player-name-flag">
+                                    <div class="player-name-flag-wrapper">
+                                        <img ng-src="{{player.getCountryFlagUrl()}}"
+                                             alt="{{player.countryCode}}"
+                                             title="{{player.countryCode}}"
+                                             class="player-flag-img">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="player-name-text">
+                                {{player.name}}
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{player.matchesPlayed}}</td>
+                    <td>{{player.minutesPlayed}}</td>
+                    <td>{{player.goalsSaved}}</td>
+                    <td>{{player.goalsSaveRate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
