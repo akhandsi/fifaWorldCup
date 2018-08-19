@@ -3,7 +3,7 @@ FIFA WorldCup is a project which utilizes FIFA World Cup REST API at https://git
 to show matches, team standings, player statistics.
   
 # Demo
-
+https://gentle-island-53708.herokuapp.com/
 
 # Installation
 
