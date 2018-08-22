@@ -10,6 +10,11 @@
   },
   "keywords": [],
   "license": "ISC",
+  "author": "Akhand Singh <akhandsingh68@gmail.com>",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/akhandsi/fifaWorldCup.git"
+  },
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
